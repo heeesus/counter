@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Conter</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        background: #666;
+        color: #fff;
+      }
+      section {
+        height: 100%;
+        text-align: center;
+      }
+      .flex-box {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .count {
+        font-size: 80px;
+        display: inline-block;
+        margin: 20px;
+      }
+      #main {
+        background: #efefef;
+        color: #f80;
+      }
+      #count {
+        position: relative;
+      }
+      .text-box {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="main">
+      <div class="flex-box">
+        <h1>go scroll down</h1>
+      </div>
+    </section>
+    
+    <section id="count">
+      <div class="text-box">
+        <h1>Counter</h1>
+        <!-- data-num에 숫자값 설정 -->
+        <p class="count" data-num="100">0</p>
+        <p class="count" data-num="150">0</p>
+        <p class="count" data-num="200">0</p>
+      </div>
+    </section>
+
+    <!-- 카운터 함수(문서 아래에 추가) -->
+    <script src="counter.js"></script>
+
+    <script>
+      // 요소 위치
+      var el = document.querySelector("#count");
+      var el_y = el.offsetTop; 
+
+      // 페이지 이동 판정
+      window.addEventListener("scroll", function() {
+        console.log(document.documentElement.scrollTop);
+        if (
+          document.body.scrollTop >= el_y ||
+          document.documentElement.scrollTop >= el_y
+        ) {
+          counter_ani(".count");
+        }
+      });
+    </script>
+  </body>
+</html>
